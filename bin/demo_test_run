@@ -108,7 +108,7 @@ class DemoTestRuns
     page.save_screenshot(screenshot_file)
     puts "Saved screenshot #{screenshot_file}"
     about_options = {
-      name: 'Gyms Division',
+      name: 'About Us',
       browser: 'Phantom',
       size: 1024,
       screenshot: File.new(screenshot_file, 'rb'),
