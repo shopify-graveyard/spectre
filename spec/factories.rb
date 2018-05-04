@@ -1,6 +1,6 @@
 include ActionDispatch::TestProcess
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :project do
     name 'spec_project'
     slug 'spec_project_slug'

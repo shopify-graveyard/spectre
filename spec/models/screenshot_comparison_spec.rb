@@ -6,14 +6,14 @@ RSpec.describe ScreenshotComparison do
 
   let(:same_screenshot_comparison) do
     described_class.new(
-      FactoryGirl.create(:test),
+      FactoryBot.create(:test),
       same_image
     )
   end
 
   let(:different_screenshot_comparison) do
     described_class.new(
-      FactoryGirl.create(:test),
+      FactoryBot.create(:test),
       different_image
     )
   end

@@ -1,6 +1,6 @@
 Given(/^there are projects with tests$/) do
   3.times do
-    FactoryGirl.create(:test)
+    FactoryBot.create(:test)
   end
 end
 
