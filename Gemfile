@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'shopify-cloud', source: 'https://packages.shopify.io/shopify/gems'
+gem 'internal_app', '~> 1.0.1', source: 'https://packages.shopify.io/shopify/gems'
+
 gem 'rails', '4.2.10'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
@@ -43,15 +46,17 @@ group :development do
   gem 'spring'
 end
 
+group :test, :demo_test_run do
+  gem 'poltergeist'
+end
+
 group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
-  gem 'poltergeist'
 end
 
 group :demo_test_run do
   gem 'capybara'
-  gem 'poltergeist'
   gem 'rmagick'
   gem 'rspec'
   gem 'spectre_client', git: 'https://github.com/wearefriday/spectre_client.git'
