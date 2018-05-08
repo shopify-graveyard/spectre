@@ -1,0 +1,46 @@
+name: spectre
+
+type: rails
+
+up:
+  - homebrew:
+    - postgresql
+    - imagemagick
+  - ruby: 2.3.3
+  - bundler
+  - custom:
+      name: database setup
+      met?: if psql -l | grep -q "spectre_development" && psql -l | grep -q "spectre_test"; then true; else false; fi 
+      meet: rake db:setup
+  - custom:
+      name: database migration
+      met?: if [[ $(rake db:migrate:status | grep -s "down") ]] ; then false; else true; fi 
+      meet: rake db:migrate
+
+commands:
+  console:   
+    desc:       'start a rails console'
+    run:        bin/rails console
+    aliases:    [c]
+  demo:
+    desc:       'runs the spectre demo test run'
+    run:        bin/demo_test_run localhost:3000
+    aliases:    [d]
+  migrate:     
+    desc:       'do database migrations'
+    run:        bin/rake db:migrate
+    aliases:    [m]
+  server:
+    desc:       'start spectre'
+    run:        bundle exec rails server 
+    aliases:    [s]
+  test:
+    syntax:
+      argument: file
+      optional: args...
+    run:        bin/rails test
+    aliases:    [t]
+
+# These use fuzzy-matching, so you can (e.g.) `dev open app`
+open:
+  "app": http://localhost:3000
