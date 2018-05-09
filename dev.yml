@@ -14,32 +14,29 @@ up:
       meet: rake db:setup
   - custom:
       name: database migration
-      met?: if [[ $(rake db:migrate:status | grep -s "down") ]] ; then false; else true; fi 
+      met?: if [[ $(bundle exec rake db:migrate:status | grep -s "down") ]] ; then false; else true; fi 
       meet: rake db:migrate
 
 commands:
   console:   
     desc:       'start a rails console'
-    run:        bin/rails console
+    run:        bundle exec rails console
     aliases:    [c]
   demo:
-    desc:       'runs the spectre demo test run'
+    desc:       'runs the spectre demo'
     run:        bin/demo_test_run localhost:3000
     aliases:    [d]
+  db_reset:
+    desc:       'drops then recreates the databases'
+    run:        bundle exec rake db:reset
   migrate:     
     desc:       'do database migrations'
-    run:        bin/rake db:migrate
+    run:        bundle exec rake db:migrate
     aliases:    [m]
   server:
     desc:       'start spectre'
     run:        bundle exec rails server 
     aliases:    [s]
-  test:
-    syntax:
-      argument: file
-      optional: args...
-    run:        bin/rails test
-    aliases:    [t]
 
 # These use fuzzy-matching, so you can (e.g.) `dev open app`
 open:
