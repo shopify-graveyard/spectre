@@ -64,26 +64,33 @@ class DemoTestRuns
 
     setup_poltergeist
 
-    visit "http://www.nuffieldhealth.com/"
-    sleep(2)
-    screenshot_file = 'homepage.png'
-    page.save_screenshot(screenshot_file)
-    puts "Saved screenshot #{screenshot_file}"
-
     home_options = {
-      name: 'Homepage',
+      name: 'URL - Meme Fullsize',
       browser: 'Phantom',
-      size: 1024,
-      screenshot: File.new(screenshot_file, 'rb'),
+      size: 650,
+      screenshot: "http://www.freepngimg.com/download/internet_meme/1-2-forever-alone-meme-png.png",
       highlight_colour: '00ff00'
     }
     spectre.submit_test(home_options)
 
-    puts "Submitting #{screenshot_file}"
-    File.delete(screenshot_file)
+    puts "Submitting #{home_options[:screenshot]}"
 
     Capybara.reset_sessions!
 
+    home_options = {
+      name: 'URL - Meme Cropped',
+      browser: 'Phantom',
+      size: 650,
+      screenshot: "http://www.freepngimg.com/download/internet_meme/1-2-forever-alone-meme-png.png",
+      crop_area: "325x650+325+0",
+      highlight_colour: '00ff00'
+    }
+    spectre.submit_test(home_options)
+
+    puts "Submitting #{home_options[:screenshot]}"
+
+    Capybara.reset_sessions!
+    
     visit "http://www.nuffieldhealth.com/gyms/"
     sleep(2)
     screenshot_file = 'gyms.png'
@@ -91,7 +98,7 @@ class DemoTestRuns
     puts "Saved screenshot #{screenshot_file}"
 
     gym_options = {
-      name: 'Gyms Division',
+      name: 'File - Gyms Screenshot',
       browser: 'Phantom',
       size: 1024,
       screenshot: File.new(screenshot_file, 'rb')
@@ -102,51 +109,6 @@ class DemoTestRuns
 
     Capybara.reset_sessions!
 
-    visit "http://www.nuffieldhealth.com/about-us/"
-    sleep(2)
-    screenshot_file = 'about_us.png'
-    page.save_screenshot(screenshot_file)
-    puts "Saved screenshot #{screenshot_file}"
-    about_options = {
-      name: 'About Us',
-      browser: 'Phantom',
-      size: 1024,
-      screenshot: File.new(screenshot_file, 'rb'),
-      fuzz_level: '90%',
-      highlight_colour: '00ff00'
-    }
-    spectre.submit_test(about_options)
-    puts "Submitting #{screenshot_file}"
-    File.delete(screenshot_file)
-
-    puts "End"
-  end
-
-  # get a grab from wearefriday.com and draw on it to ensure it fails each test
-  def demo_run_with_failing_test
-    spectre = SpectreClient::Client.new('We are friday', 'site', @url)
-    puts "Created Spectre run"
-    sleep(2)
-    setup_poltergeist
-
-    visit "http://www.wearefriday.com/"
-    sleep(2)
-    screenshot_file = 'homepage.png'
-    page.save_screenshot(screenshot_file)
-    draw_on_screenshot
-    puts "Saved screenshot #{screenshot_file}"
-    home_options = {
-    name: 'Homepage',
-    browser: 'Phantom',
-    size: 1024,
-    screenshot: File.new(screenshot_file, 'rb'),
-    highlight_colour: '00ff00'
-    }
-    spectre.submit_test(home_options)
-    puts "Submitting #{screenshot_file}"
-    File.delete(screenshot_file)
-
-    Capybara.reset_sessions!
   end
 end
 
