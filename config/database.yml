@@ -3,7 +3,7 @@ default: &default
   encoding: utf8
   username:
   password:
-  pool: 5
+  pool: 100
   timeout: 5000
 
 development:
