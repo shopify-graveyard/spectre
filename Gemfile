@@ -17,7 +17,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'rails_admin'
+# Disabling rails_admin don't want it running in the cloud
+# gem 'rails_admin' 
 gem 'sequenced'
 gem 'dragonfly', '~> 1.0.12'
 gem 'image_size'
