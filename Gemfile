@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'shopify-cloud', source: 'https://packages.shopify.io/shopify/gems'
-#gem 'internal_app', '~> 1.0.1', source: 'https://packages.shopify.io/shopify/gems'
+gem 'internal_app', '~> 1.0.1', source: 'https://packages.shopify.io/shopify/gems'
 
 gem 'rails', '5.0.7'
 gem 'pg'

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  #mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  # Shopify internal_app
+  mount InternalApp::Engine => "/"
+
+  # Disable rails_admin as we don't want this running in cloud
+  # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   get '/' => redirect('/projects')
 

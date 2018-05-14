@@ -22,5 +22,12 @@ module Spectre
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    
+    # Shopify internal app - Opt out of internal bootstrap css
+    config.internal_app_engine.use_bootstrap = true
+
+    # Shopify internal app - Opt of user persistence strategy use sessions
+    config.internal_app_engine.user_persistence.strategy = nil
+    config.internal_app_engine.use_nested_layout = true
   end
 end
