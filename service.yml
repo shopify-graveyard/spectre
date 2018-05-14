@@ -1,0 +1,6 @@
+# https://services.shopify.io/services/spectre/production
+director: NathanPJF
+owners:
+- Shopify/sustaining-engineering
+production:
+  classification: tier4
